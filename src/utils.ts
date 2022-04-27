@@ -1,3 +1,4 @@
+import { FormData } from 'formdata-polyfill/esm.min.js'
 const payloadMethods = new Set(Object.freeze(['PATCH', 'POST', 'PUT', 'DELETE']))
 export function isPayloadMethod (method: string = 'GET') {
   return payloadMethods.has(method.toUpperCase())
@@ -7,7 +8,7 @@ export function isJSONSerializable (val: any) {
   if (val === undefined || val === null) {
     return false
   }
-  if (val instanceof FormData || val instanceof Blob || val instanceof File) {
+  if (val instanceof FormData) {
     return false
   }
   const t = typeof val
